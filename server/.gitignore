@@ -6,7 +6,7 @@ logs/
 
 # Ignore dotenv environment variable files
 .env
-.env.*
+
 
 # Ignore build artifacts
 build/
