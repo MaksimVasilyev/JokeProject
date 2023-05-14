@@ -1,6 +1,7 @@
-import axios from 'axios';
+import axios from "axios";
 
-const BASE_URL = process.env.REACT_APP_SERVER_URL || 'http://localhost:3000/users';
+const BASE_URL =
+  process.env.REACT_APP_SERVER_URL || "http://localhost:3000/users";
 
 interface Credentials {
   email: string;
@@ -8,31 +9,33 @@ interface Credentials {
 }
 
 interface userData {
-  email: string,
-  password: string,
-  passwordConfirm: string
+  email: string;
+  password: string;
+  passwordConfirm: string;
 }
 
 interface passwordData {
-  passwordCurrent: string,
-  password: string,
-  passwordConfirm: string
+  passwordCurrent: string;
+  password: string;
+  passwordConfirm: string;
 }
 interface resetPasswordData {
-  password: string,
-  passwordConfirm: string
+  password: string;
+  passwordConfirm: string;
 }
-
 
 // Function to make login request
 export const login = async (credentials: Credentials) => {
   try {
     const response = await axios.post(`${BASE_URL}/login`, credentials);
-    console.log(response.data)
-    const { token, data: { user } } = response.data;
+    console.log(response.data);
+    const {
+      token,
+      data: { user },
+    } = response.data;
     return { token, user };
-  } catch (error:any) {
-    throw new Error(error?.response?.data?.message || 'An error occurred');
+  } catch (error: any) {
+    throw new Error(error?.response?.data?.message || "An error occurred");
   }
 };
 
@@ -58,59 +61,76 @@ export const login = async (credentials: Credentials) => {
 //   }
 // };
 
-
 // Function to make signup request
-export const signup = async (userData:userData) => {
+export const signup = async (userData: userData) => {
   try {
     const response = await axios.post(`${BASE_URL}/signup`, userData);
-    const { token, data: { user } } = response.data;
-    console.log(response.data)
-    console.log(token, user)
+    const {
+      token,
+      data: { user },
+    } = response.data;
+    console.log(response.data);
+    console.log(token, user);
     return { token, user };
-  } catch (error:any) {
-    throw new Error(error?.response?.data?.message || 'An error occurred');
-    
+  } catch (error: any) {
+    throw new Error(error?.response?.data?.message || "An error occurred");
   }
 };
 
 // // Function to make update password request
-export const updatePassword = async ( oldToken: string, passwordData: passwordData ) => {
+export const updatePassword = async (
+  oldToken: string,
+  passwordData: passwordData
+) => {
   try {
-    const response = await axios.patch(`${BASE_URL}/updateMyPassword`, passwordData, {
-      headers: { Authorization: `Bearer ${oldToken}` },
-    });
-    const { token: newToken, data: { user } } = response.data;
-    console.log(response.data)
-    console.log(newToken, user)
+    const response = await axios.patch(
+      `${BASE_URL}/updateMyPassword`,
+      passwordData,
+      {
+        headers: { Authorization: `Bearer ${oldToken}` },
+      }
+    );
+    const {
+      token: newToken,
+      data: { user },
+    } = response.data;
+    console.log(response.data);
+    console.log(newToken, user);
     return { newToken, user };
-  } catch (error:any) {
-    throw new Error(error?.response?.data?.message || 'An error occurred');
-    
+  } catch (error: any) {
+    throw new Error(error?.response?.data?.message || "An error occurred");
   }
 };
 
 // Function to make forget password request
-export const forgotPassword = async (email:string) => {
+export const forgotPassword = async (email: string) => {
   try {
     const response = await axios.post(`${BASE_URL}/forgotPassword`, { email });
     return response.data;
-  } catch (error:any) {
-    throw new Error(error?.response?.data?.message || 'An error occurred');
+  } catch (error: any) {
+    throw new Error(error?.response?.data?.message || "An error occurred");
   }
 };
 
-export const ResetPassword = async ( resetToken: string, passwordData: resetPasswordData ) => {
+export const ResetPassword = async (
+  resetToken: string,
+  passwordData: resetPasswordData
+) => {
   try {
-    const response = await axios.patch(`${BASE_URL}/resetPassword/${resetToken}`, passwordData);
-    const { token,  data: { user } } = response.data;
-    console.log(response.data)
-    console.log(token, user)
+    const response = await axios.patch(
+      `${BASE_URL}/resetPassword/${resetToken}`,
+      passwordData
+    );
+    const {
+      token,
+      data: { user },
+    } = response.data;
+    console.log(response.data);
+    console.log(token, user);
     return { token, user };
-  } catch (error:any) {
-    throw new Error(error?.response?.data?.message || 'An error occurred');
-    
+  } catch (error: any) {
+    throw new Error(error?.response?.data?.message || "An error occurred");
   }
 };
 
-
-export {}
+export {};

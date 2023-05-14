@@ -42,7 +42,7 @@ exports.signup = catchAsync(async (req, res, next) => {
   
     // 1) Check if email and password exist
     if (!email || !password) {
-      
+      console.log( 'error created')
       return next(new AppError('Please provide email and password!', 400));
     }
     // 2) Check if user exists && password is correct

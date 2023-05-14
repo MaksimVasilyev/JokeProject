@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Footer from '../components/Footer';
-import UserHeader from '../components/UserHeader';
-import { fetchJoke } from '../services/contentServices';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
+import UserHeader from "../components/UserHeader";
+import { fetchJoke } from "../services/contentServices";
 
 interface JokePageProps {
   userEmail: string;
@@ -10,12 +10,12 @@ interface JokePageProps {
 }
 
 const JokePage: React.FC<JokePageProps> = ({ userEmail, isAuthenticated }) => {
-  const [joke, setJoke] = useState('');
+  const [joke, setJoke] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!isAuthenticated) {
-      navigate('/'); // Redirect to the login page if not authenticated
+      navigate("/"); // Redirect to the login page if not authenticated
     } else {
       fetchJokeAndSet();
     }
@@ -37,9 +37,9 @@ const JokePage: React.FC<JokePageProps> = ({ userEmail, isAuthenticated }) => {
   return (
     <div>
       <UserHeader userEmail={userEmail} />
-      <div className='joke-container'>
+      <div className="joke-container">
         <h3>{joke}</h3>
-        <button onClick={handleClick} className='joke-button' type='button'>
+        <button onClick={handleClick} className="joke-button" type="button">
           Get another
         </button>
       </div>
